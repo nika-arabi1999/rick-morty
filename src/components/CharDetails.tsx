@@ -92,7 +92,7 @@ function DetailEpisodes({ selectedItem }: { selectedItem: singleCharachter }) {
   useEffect(() => {
     fetchEpisodes();
     console.log(episodes);
-  }, [selectedItem, episodes]);
+  }, [selectedItem]);
 
   // const itemEpisodes = showMore ? episodes : episodes.slice(0, 3);
   let itemEpisodes;

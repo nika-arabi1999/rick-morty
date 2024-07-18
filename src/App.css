@@ -3,7 +3,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  /* text-align: center; */
  
 
 }
@@ -276,6 +276,7 @@ button {
   border-radius: 1rem;
 }
 .item-data {
+  white-space: nowrap;
   width: 30%;
   height: 60px;
   display: flex;
@@ -283,9 +284,13 @@ button {
   justify-content: space-between;
   align-items: flex-start;
   flex-grow: 5;
+
 }
 .result-name {
+  width: 100%;
   font-weight: 500;
+  overflow:hidden  ;
+  text-overflow: ellipsis;
 }
 .result-status {
   font-size: 17px;
@@ -459,6 +464,9 @@ button {
 }
 
 @media (max-width:600px) {
+  #root {
+    padding: .7rem;
+  }
   .DetailInfo {
     flex-direction: column;
     align-items: center;

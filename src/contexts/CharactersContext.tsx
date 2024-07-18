@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { singleCharachter } from "../App";
-type Action = { type: "UPDATE_CHARCTERS"; payload: singleCharachter[] } | { type: "UPDATE_FAVORITES"; payload: singleCharachter[] };
+type Action =
+  | { type: "UPDATE_CHARCTERS"; payload: singleCharachter[] }
+  | { type: "UPDATE_FAVORITES"; payload: singleCharachter[] };
 
 type CharactersContextType = {
   characters: singleCharachter[];
-  favorites: singleCharachter[];
+  // favorites: singleCharachter[];
   dispatch: React.Dispatch<{
     type: "UPDATE_CHARCTERS";
     payload: singleCharachter[];
@@ -13,7 +15,7 @@ type CharactersContextType = {
 
 const initialState = {
   characters: [],
-  favorites : []
+  favorites: [],
 };
 
 // Create the context
@@ -49,8 +51,8 @@ const characterReducer = (
   switch (action.type) {
     case "UPDATE_CHARCTERS":
       return { ...state, characters: action.payload as any };
-      case "UPDATE_FAVORITES":
-        return { ...state, favorites: action.payload as any };
+    case "UPDATE_FAVORITES":
+      return { ...state, favorites: action.payload as any };
     default:
       return state;
   }
