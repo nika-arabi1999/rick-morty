@@ -53,9 +53,11 @@ function DetailInfo({ selectedItem, favorites, favoritesHandler }) {
           <small>{`${selectedItem?.location?.name}`}</small>
         </div>
         <div className="CharFavBtn">
-          {favorites.find(
-            (favorite: singleCharachter) => favorite.id === selectedItem.id
-          ) ? (
+          {selectedItem.name === "Name" ? (
+            ""
+          ) : favorites.find(
+              (favorite: singleCharachter) => favorite.id === selectedItem.id
+            ) ? (
             <span className="CharFavBtn-added">Added To Favorites ♥️</span>
           ) : (
             <button
@@ -144,8 +146,13 @@ function DetailEpisodes({ selectedItem }: { selectedItem: singleCharachter }) {
               })
           ) : (
             <li className="ep-list-item">
-              <span className="ep-title">{`1-${itemEpisodes.name}`}</span>
-              <span className="ep-date"> {`${itemEpisodes.air_date}`}</span>
+              <span className="ep-title">
+                {itemEpisodes.name ? `1-${itemEpisodes.name}` : ""}
+              </span>
+              <span className="ep-date">
+                {" "}
+                {itemEpisodes.air_date ? `${itemEpisodes.air_date}` : ""}
+              </span>
             </li>
             // <span>"no episodes for this character!"</span>
           )}

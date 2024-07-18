@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CharDetails from "./components/CharDetails";
 import CharItems from "./components/CharItems";
 import FavModal from "./components/FavModal";
@@ -40,7 +40,7 @@ const emptyChar = {
   gender: "Male",
   location: { name: "Location" },
   disabled: true,
-  episode: ["1", "2", "3", "4"],
+  // episode: ["1", "2", "3", "4", "5"],
 };
 
 // export const CharachtersContext = createContext(emptyChar);
