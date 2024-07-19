@@ -1,12 +1,19 @@
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { CharItem } from "./CharItems";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import { singleCharachter } from "../App";
 export default function FavModal({
   favClose,
   setFavClose,
   favorites,
   setFavorites,
   removeFavoritesHandler,
+}: {
+  favClose:boolean,
+  setFavClose: React.Dispatch<React.SetStateAction<boolean>>,
+  favorites: singleCharachter[],
+  setFavorites: any,
+  removeFavoritesHandler: (id: number) => void,
 }) {
   return (
     <div className={`${favClose ? "hidden" : ""}  FavModal`}>

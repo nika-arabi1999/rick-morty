@@ -10,6 +10,10 @@ export default function CharDetails({
   selectedItem,
   favorites,
   favoritesHandler,
+}: {
+  selectedItem: singleCharachter;
+  favorites: singleCharachter[];
+  favoritesHandler: (newFavItem: singleCharachter) => void;
 }) {
   return (
     <div className="CharDetails">
@@ -23,7 +27,15 @@ export default function CharDetails({
   );
 }
 
-function DetailInfo({ selectedItem, favorites, favoritesHandler }) {
+function DetailInfo({
+  selectedItem,
+  favorites,
+  favoritesHandler,
+}: {
+  selectedItem: singleCharachter;
+  favorites: singleCharachter[];
+  favoritesHandler: (newFavItem: singleCharachter) => void;
+}) {
   return (
     <div className="DetailInfo">
       <div className="detail-img">
@@ -74,16 +86,15 @@ function DetailInfo({ selectedItem, favorites, favoritesHandler }) {
 }
 
 function DetailEpisodes({ selectedItem }: { selectedItem: singleCharachter }) {
-  const [episodes, setEpisodes] = useState([]);
-
+  const [episodes, setEpisodes] = useState<any>([]);
   const [sort, setSort] = useState("earliest");
   const [showMore, setShowMore] = useState(false);
   const fetchEpisodes = async () => {
-    const eps: number[] = selectedItem.episode
+    const eps = selectedItem.episode
       .map((ep) => {
         return ep.split("/").at(-1);
       })
-      .map((ep: string) => {
+      .map((ep) => {
         return Number(ep);
       });
     const finalEpisodes = await axios.get(
@@ -112,9 +123,7 @@ function DetailEpisodes({ selectedItem }: { selectedItem: singleCharachter }) {
         <div
           className="sort-btn"
           onClick={() =>
-            setSort((sort) =>
-              sort === "earliest" ? setSort("latest") : setSort("earliest")
-            )
+            setSort((sort) => (sort === "earliest" ? "latest" : "earliest"))
           }
         >
           <ArrowUpCircleIcon
@@ -126,12 +135,17 @@ function DetailEpisodes({ selectedItem }: { selectedItem: singleCharachter }) {
         <ul className="ep-list">
           {Array.isArray(itemEpisodes) ? (
             itemEpisodes
-              .sort((a, b) => {
+              .sort((a: any, b: any) => {
                 if (sort === "earliest") {
-                  return new Date(a.air_date) - new Date(b.air_date);
-                }
-                if (sort === "latest") {
-                  return new Date(b.air_date) - new Date(a.air_date);
+                  return (
+                    new Date(a.air_date).getTime() -
+                    new Date(b.air_date).getTime()
+                  );
+                } else {
+                  return (
+                    new Date(b.air_date).getTime() -
+                    new Date(a.air_date).getTime()
+                  );
                 }
               })
               .map((ep, index) => {
@@ -163,7 +177,13 @@ function DetailEpisodes({ selectedItem }: { selectedItem: singleCharachter }) {
   );
 }
 
-function ShowMoreOrLess({ showMore, setShowMore }) {
+function ShowMoreOrLess({
+  showMore,
+  setShowMore,
+}: {
+  showMore: boolean;
+  setShowMore: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <div className="ShowMoreOrLess">
       {!showMore ? (

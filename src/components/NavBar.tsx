@@ -1,8 +1,8 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { useContext } from "react";
-import { CharachtersContext } from "../App";
 import { useCharactersContext } from "../contexts/CharactersContext";
-export default function NavBar({ children }): any {
+import { ReactNode } from "react";
+import { singleCharachter } from "../App";
+export default function NavBar({ children }: { children: ReactNode }) {
   return <div className="NavBar">{children}</div>;
 }
 
@@ -17,7 +17,11 @@ export function LogoBox() {
   );
 }
 
-export function SearchBox({ setQuery }) {
+export function SearchBox({
+  setQuery,
+}: {
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}) {
   return (
     <div className="search-box">
       <div className="wrap">
@@ -38,15 +42,20 @@ export function SearchBox({ setQuery }) {
 }
 
 export function ReasultsBox() {
-  const {characters} = useCharactersContext();
-
+  const { characters } = useCharactersContext();
 
   return (
     <div className="info-box">Found {`${characters.length}`} Reasults</div>
   );
 }
 
-export function FavBox({ favorites, setFavClose }) {
+export function FavBox({
+  favorites,
+  setFavClose,
+}: {
+  favorites: singleCharachter[];
+  setFavClose: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
     <div className="FavBox">
       <div className="heart-icon" onClick={() => setFavClose(false)}>
