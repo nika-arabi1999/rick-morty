@@ -17,7 +17,7 @@ export default function DetailEpisodes({
   const [episodes, setEpisodes] = useState<any>([]);
   const [sort, setSort] = useState("earliest");
   const [showMore, setShowMore] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const fetchEpisodes = async () => {
     const eps = selectedItem.episode
       .map((ep) => {
@@ -37,7 +37,6 @@ export default function DetailEpisodes({
     } finally {
       setIsLoading(false);
     }
-
   };
   useEffect(() => {
     fetchEpisodes();

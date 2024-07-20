@@ -32,7 +32,8 @@ export type singleCharachter = {
 };
 const emptyChar = {
   id: 1000,
-  image: "/public/avatar3.png",
+  image:
+    "https://cdn.icon-icons.com/icons2/3297/PNG/512/user_profile_icon_208590.png",
   name: "Name",
   status: "status",
   species: "species",
@@ -40,10 +41,7 @@ const emptyChar = {
   gender: "Male",
   location: { name: "Location" },
   disabled: true,
- 
 };
-
-
 
 function App() {
   // const [characters, setCharacters] = useState([]);
